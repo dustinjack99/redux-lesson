@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
-import StoreContext from '../contexts/storeContext';
+import { connect } from 'react-redux';
 
 class Bugs extends Component {
-  static contextType = StoreContext;
+  constructor(props) {
+    super(props);
+  }
 
   componentDidMount() {
-    console.log(this.contextType);
+    console.log(this.props);
   }
 
   render() {
-    return <div>Bugs</div>;
+    return (
+      
+    );
   }
 }
 
+const mapStateToProps = state => ({
+  bugs: state.entities.bugs.list,
+});
+
+const mapDispatchToProps = dispatch => ({});
+
+connect(mapStateToProps)(Bugs);
 export default Bugs;
