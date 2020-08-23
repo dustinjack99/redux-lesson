@@ -1,5 +1,5 @@
-import configureStore from './redux_fund/store/configureStore';
-import * as bugs from './redux_fund/store/bugs';
+import configureStore from './configureStore';
+import * as bugs from './bugs';
 
 const store = configureStore();
 
