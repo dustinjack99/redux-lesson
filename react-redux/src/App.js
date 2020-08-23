@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
+// import { Provider } from 'react-redux';
 import './App.css';
+import Bugs from './components/bugs';
+import configureAppStore from './store/configureStore';
+import StoreContext from './contexts/storeContext';
+import * as bugs from './store/bugs';
+
+const store = configureAppStore();
+
+store.subscribe(() => {
+  console.log('state changed!');
+});
+
+store.dispatch(bugs.bugAdded('woofie1'));
+store.dispatch(bugs.bugAdded('woofie2'));
+store.dispatch(bugs.bugAdded('woofie3'));
+store.dispatch(bugs.bugUpdated(1));
+
+console.log(store.getState());
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StoreContext.Provider store={store}>
+      <Bugs />
+    </StoreContext.Provider>
   );
 }
 
